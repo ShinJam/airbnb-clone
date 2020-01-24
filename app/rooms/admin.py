@@ -35,6 +35,8 @@ class RooAdmin(admin.ModelAdmin):
         "check_out",
         "instant_book",
         "count_amenities",
+        "count_photos",
+        "total_rating",
     )
 
     list_filter = (
