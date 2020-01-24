@@ -35,5 +35,4 @@ class CustomUserAdmin(UserAdmin):
         "currency",
         "superhost",
         "is_staff",
-        "is_superhost",
     )
