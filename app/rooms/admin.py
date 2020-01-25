@@ -5,21 +5,37 @@ from django.utils.safestring import mark_safe
 from . import models
 
 
+@admin.register(models.RoomType, models.Facility, models.Amenity, models.HouseRule)
+class ItemAdmin(admin.ModelAdmin):
+    """ Item Admin Definition """
+    list_display = ("name", "used_by")
+
+    def used_by(self, obj):
+        return obj.rooms.count()
+
+
+class PhotoInline(admin.TabularInline):
+    model = models.Photo
+    extra = 1
+
+
 @admin.register(models.Room)
 class RooAdmin(admin.ModelAdmin):
     """ Room Admin Definition """
 
+    inlines = (PhotoInline,)
+
     fieldsets = (
         (
             "Basic Info",
-            {"fields": ("name", "description", "country", "address", "price")},
+            {"fields": ("name", "description", "city", "country", "address", "price")},
         ),
         ("Times", {"fields": ("check_in", "check_out", "instant_book")}),
         ("Spaces", {"fields": ("guests", "beds", "bedrooms", "baths")}),
         (
             "More About the Space",
             {
-                "classes": ("collapse",),
+                # "classes": ("collapse",),
                 "fields": ("amenities", "facilities", "house_rules"),
             },
         ),
@@ -53,6 +69,8 @@ class RooAdmin(admin.ModelAdmin):
         "country",
     )
 
+    raw_id_fields = ("host", )
+
     search_fields = ("=city", "^host__username")
 
     filter_horizontal = ("amenities", "facilities", "house_rules")
@@ -62,15 +80,6 @@ class RooAdmin(admin.ModelAdmin):
 
     def count_photos(self, obj):
         return obj.photos.count()
-
-
-@admin.register(models.RoomType, models.Facility, models.Amenity, models.HouseRule)
-class ItemAdmin(admin.ModelAdmin):
-    """ Item Admin Definition """
-    list_display = ("name", "used_by")
-
-    def used_by(self, obj):
-        return obj.rooms.count()
 
 
 @admin.register(models.Photo)
