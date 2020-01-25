@@ -58,7 +58,7 @@ class RooAdmin(admin.ModelAdmin):
         return obj.amenities.count()
 
     def count_photos(self, obj):
-        return obj.phothos.count()
+        return obj.photos.count()
 
 
 @admin.register(models.RoomType, models.Facility, models.Amenity, models.HouseRule)
@@ -68,3 +68,4 @@ class ItemAdmin(admin.ModelAdmin):
 
     def used_by(self, obj):
         return obj.rooms.count()
+
