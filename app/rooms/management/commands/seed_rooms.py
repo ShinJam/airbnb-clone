@@ -37,7 +37,7 @@ class Command(BaseCommand):
         created_photos = seeder.execute()
         created_clean = flatten(list(created_photos.values()))
         amenities = room_models.Amenity.objects.all()
-        facilities = room_models.Amenity.objects.all()
+        facilities = room_models.Facility.objects.all()
         rules = room_models.HouseRule.objects.all()
         for pk in created_clean:
             room = room_models.Room.objects.get(pk=pk)
