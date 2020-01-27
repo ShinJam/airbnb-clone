@@ -24,11 +24,20 @@ class RooAdmin(admin.ModelAdmin):
     """ Room Admin Definition """
 
     inlines = (PhotoInline,)
-
     fieldsets = (
         (
             "Basic Info",
-            {"fields": ("name", "description", "city", "country", "address", "price")},
+            {
+                "fields": (
+                    "name",
+                    "description",
+                    "country",
+                    "city",
+                    "address",
+                    "price",
+                    "room_type",
+                )
+            },
         ),
         ("Times", {"fields": ("check_in", "check_out", "instant_book")}),
         ("Spaces", {"fields": ("guests", "beds", "bedrooms", "baths")}),
@@ -41,6 +50,7 @@ class RooAdmin(admin.ModelAdmin):
         ),
         ("Last Details", {"fields": ("host",)}),
     )
+
     list_display = (
         "name",
         "country",
