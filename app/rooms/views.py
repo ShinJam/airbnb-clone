@@ -8,7 +8,6 @@ def all_rooms(request):
     room_list = models.Room.objects.all()
     paginator = Paginator(room_list, 10, orphans=5)
     try:
-        rooms = paginator.page(page)
         context = {
             "page": paginator.page(page),
         }
