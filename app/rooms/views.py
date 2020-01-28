@@ -17,10 +17,10 @@ def all_rooms(request):
     #     "page_count": page_count,
     #     "page_range": range(1, page_count),
     # }
-    page = request.GET.get("page")
+    page = int(request.GET.get("page", 1))
     room_list = models.Room.objects.all()
-    paginator = Paginator(room_list, 10)
+    paginator = Paginator(room_list, 10, orphans=5)
     context = {
-        "rooms": paginator.get_page(page),
+        "page": paginator.page(page),
     }
     return render(request, "rooms/home.html", context)
