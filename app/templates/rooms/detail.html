@@ -5,7 +5,33 @@
 {% endblock page_name %}
 
 {% block content %}
-    <p>
-        pk : {{ pk }}
-    </p>
+    <div>
+        <h1>{{ room.name }}</h1>
+        <h3>{{ rooom.description }}</h3>
+    </div>
+    <h2>Amenities</h2>
+    <h2>
+        By: {{ room.host.username }}
+        {% if room.host.superhost %}
+            (superhost)
+        {% endif %}
+    </h2>
+    <h3>Amenities</h3>
+    <ul>
+    {% for a in room.amenities.all %}
+        <li>{{ a }}</li>
+    {% endfor %}
+    </ul>
+    <h3>Facilites</h3>
+    <ul>
+    {% for a in room.facilites.all %}
+        <li>{{ a }}</li>
+    {% endfor %}
+    </ul>
+    <h3>House Ruules</h3>
+    <ul>
+    {% for a in room.house_rules.all %}
+        <li>{{ a }}</li>
+    {% endfor %}
+    </ul>
 {% endblock %}
