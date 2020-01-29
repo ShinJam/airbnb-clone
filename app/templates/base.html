@@ -8,10 +8,17 @@
     <title>{% block page_title %}{% endblock page_title %}</title>
 </head>
 <body>
-    {% include "partials/header.html" %}
+<header>
+    {% include "partials/nav.html" %}
+    {% block search-bar %}
+        <form action="{% url 'rooms:search' %}" method="GET">
+            <input type="text" name="city" placeholder="Search By City">
+        </form>
+    {% endblock search-bar %}
+</header>
 
-    {% block content %}{% endblock content%}
+{% block content %}{% endblock content %}
 
-    {% include "partials/footer.html" %}
+{% include "partials/footer.html" %}
 </body>
 </html>
