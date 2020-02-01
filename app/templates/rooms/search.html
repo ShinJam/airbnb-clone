@@ -62,8 +62,8 @@
             <input type="checkbox" name="instant" id="instant" {% if instant %}checked{% endif %}/>
         </div>
         <div>
-            <label for="super_host">By Superhost Only?</label>
-            <input type="checkbox" name="super_host" id="super_host" {% if super_host %}checked{% endif %}/>
+            <label for="superhost">By Superhost Only?</label>
+            <input type="checkbox" name="superhost" id="superhost" {% if superhost %}checked{% endif %}/>
         </div>
         <div>
             <h3>Amenities</h3>
@@ -72,13 +72,13 @@
                     <li>
                         <label for="a_{{ amenity.pk }}">{{ amenity.name }}</label>
                         <input
-                            id="a_{{amenity.pk}}"
-                            name="amenities"
-                            type="checkbox"
-                            value={{amenity.pk}}
-                            {% if amenity.pk|slugify in s_amenities %}
-                                checked
-                            {% endif %}
+                                id="a_{{ amenity.pk }}"
+                                name="amenities"
+                                type="checkbox"
+                                value={{ amenity.pk }}
+                                        {% if amenity.pk|slugify in s_amenities %}
+                                            checked
+                                        {% endif %}
                         />
                     </li>
                 {% endfor %}
@@ -95,9 +95,9 @@
                                 name="facilities"
                                 type="checkbox"
                                 value={{ facility.pk }}
-                                {% if facility.pk|slugify in s_facilities %}
-                                    checked
-                                {% endif %}
+                                        {% if facility.pk|slugify in s_facilities %}
+                                            checked
+                                        {% endif %}
                         />
                     </li>
                 {% endfor %}
