@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django_countries import countries
+from django.http import HttpResponse
 
 from . import models
 
@@ -31,6 +32,10 @@ def search(request):
         "bedrooms": int(request.GET.get("bedrooms", 0)),
         "beds": int(request.GET.get("beds", 0)),
         "baths": int(request.GET.get("baths", 0)),
+        "s_amenities": request.GET.getlist("amenities"),
+        "s_facilities": request.GET.get("facilities"),
+        "instant": request.GET.get("instant", False),
+        "super_host": request.GET.get("super_host", False),
     }
 
     choices = {
