@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
-from django.views import View
 from . import forms
 
 
@@ -23,3 +22,10 @@ class LoginView(FormView):
 def log_out(request):
     logout(request)
     return redirect("core:home")
+
+
+class SignUpview(FormView):
+    template_name = "users/signup.html"
+    form_class = forms.SignUpForm
+    success_url = reverse_lazy("core:home")
+    initial = {"first_name": "Nicoas", "last_name": "Serr", "email": "itn@las.com"}
