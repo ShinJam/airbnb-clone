@@ -3,6 +3,10 @@
 import os
 import sys
 
+import dotenv
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
@@ -18,4 +22,5 @@ def main():
 
 
 if __name__ == '__main__':
+    dotenv.read_dotenv(dotenv=BASE_DIR)
     main()
