@@ -10,7 +10,7 @@ class LoginForm(forms.Form):
         email = self.cleaned_data.get("email")
         password = self.cleaned_data.get("password")
         try:
-            user = models.User.objects.get(email=email)
+            user = models.User.objects.get(username=email)
             if user.check_password(password):
                 return self.cleaned_data
             else:
@@ -34,10 +34,20 @@ class SignUpForm(forms.Form):
         except models.User.DoesNotExist:
             return email
 
-    def clean_passwor1(self):
+    def clean_password1(self):
         password = self.cleaned_data.get("password")
         password1 = self.cleaned_data.get("password1")
         if password != password1:
             raise forms.ValidationError("Password confirmation does not match")
         else:
             return password
+
+    def save(self):
+        first_name = self.cleaned_data.get("first_name")
+        last_name = self.cleaned_data.get("last_name")
+        email = self.cleaned_data.get("email")
+        password = self.cleaned_data.get("password")
+        user = models.User.objects.create_user(email, email, password)
+        user.first_name = first_name
+        user.last_name = last_name
+        user.save()
