@@ -7,7 +7,7 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
     def clean(self):
-        email = self.cleaned_data.get("email")
+        email = self.cleaned_data.get("emails")
         password = self.cleaned_data.get("password")
         try:
             user = models.User.objects.get(username=email)
@@ -37,7 +37,7 @@ class SignUpForm(forms.ModelForm):
 
     def save(self, *args, **kwargs):
         user = super().save(commit=False)
-        email = self.cleaned_data.get("email")
+        email = self.cleaned_data.get("emails")
         password = self.cleaned_data.get("password")
         user.username = email
         user.set_password(password)

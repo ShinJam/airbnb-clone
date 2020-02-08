@@ -29,7 +29,7 @@ class CustomUserAdmin(UserAdmin):
         "username",
         "first_name",
         "last_name",
-        "email",
+        "emails",
         "is_active",
         "language",
         "currency",
