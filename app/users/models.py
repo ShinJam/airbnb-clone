@@ -63,4 +63,5 @@ class User(AbstractUser):
                 [self.email],
                 fail_silently=False,
             )
+            self.save()
         return
