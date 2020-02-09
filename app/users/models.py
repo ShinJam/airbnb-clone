@@ -71,11 +71,12 @@ class User(AbstractUser):
                 "emails/verify_email.html", {"secret": secret}
             )
             send_mail(
-                "Verify Airbnb Account",
-                strip_tags(html_messgae),
-                settings.EMAIL_FROM,
-                [self.email],
+                subject="Verify Airbnb Account",
+                message=None,
+                from_email=settings.EMAIL_FROM,
+                recipient_list=[self.email],
                 fail_silently=False,
+                html_message=html_messgae,
             )
             self.save()
         return
