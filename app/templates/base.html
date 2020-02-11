@@ -9,18 +9,22 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>{% block page_title %}{% endblock page_title %}</title>
 </head>
-<body>
-<header>
+<body class="text-gray-800">
+<header class="container max-w-full flex items-center justify-between px-6 border-b border-gray-400">
+    <div class="flex items-center">
+        <a href="{% url "core:home" %}">
+            <img class="w-8" src="{% static "img/logo.png" %}" alt="logo.png">
+        </a>
+        {% block search-bar %}
+            <form action="{% url "rooms:search" %}" method="GET">
+                <input name="city" placeholder="Search By City" type="text" class="border px-2 py-1 rounded-sm">
+            </form>
+        {% endblock search-bar %}
+    </div>
     {% include "partials/nav.html" %}
-    {% block search-bar %}
-        <form action="{% url 'rooms:search' %}" method="GET">
-            <input type="text" name="city" placeholder="Search By City">
-        </form>
-    {% endblock search-bar %}
 </header>
 
 {% block content %}{% endblock content %}
-
 {% include "partials/footer.html" %}
 </body>
 </html>
