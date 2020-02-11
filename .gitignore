@@ -18,9 +18,10 @@ media
 # <django-project-name>/staticfiles/
 
 uploads/
+static/
 node_modules/
 
-### Django.Python Stack ###
+### Django.Python Stack ###g
 # Byte-compiled / optimized / DLL files
 *.py[cod]
 *$py.class
