@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Log in
-{% endblock %}
+    Log In
+{% endblock page_title %}
 
 {% block search-bar %}
-{% endblock %}
+{% endblock search-bar %}
 
 {% block content %}
-    {% include 'partials/social_login.html' %}
-    <form action="{% url "users:login" %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button>Login</button>
-    </form>
-{% endblock %}
+
+    <div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-10 flex flex-col items-center border p-6 border-gray-400">
+        {% include 'partials/social_login.html' %}
+
+        <form method="POST" action="{% url "users:login" %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button>Login</button>
+        </form>
+    </div>
+{% endblock content %}
