@@ -7,7 +7,7 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password"}))
 
     def clean(self):
-        email = self.cleaned_data.get("emails")
+        email = self.cleaned_data.get("email")
         password = self.cleaned_data.get("password")
         try:
             user = models.User.objects.get(username=email)
