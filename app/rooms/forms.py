@@ -4,7 +4,6 @@ from . import models
 
 
 class SearchForm(forms.Form):
-
     city = forms.CharField(initial="Anywhere")
     country = CountryField(default="KR").formfield()
     room_type = forms.ModelChoiceField(
@@ -20,10 +19,22 @@ class SearchForm(forms.Form):
     amenities = forms.ModelMultipleChoiceField(
         required=False,
         queryset=models.Amenity.objects.all(),
-        widget=forms.CheckboxSelectMultiple
+        widget=forms.CheckboxSelectMultiple,
     )
     facilities = forms.ModelMultipleChoiceField(
         required=False,
         queryset=models.Facility.objects.all(),
-        widget=forms.CheckboxSelectMultiple
+        widget=forms.CheckboxSelectMultiple,
     )
+
+
+class CreatPhotoForm(forms.ModelForm):
+    class Meta:
+        model = models.Photo
+        fields = ("caption", "file")
+
+    def save(self, pk, *args, **kwargs):
+        photo = super().save(commit=False)
+        room = models.Room.objects.get(pk=pk)
+        photo.room = room
+        photo.save()
