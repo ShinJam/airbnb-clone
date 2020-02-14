@@ -232,8 +232,8 @@ class UpdateProfileView(mixins.LoggedInOnlyView, UpdateView):
 
 
 class UpdatePasswordView(
-        mixins.EmailLoginOnlyView,
         mixins.LoggedInOnlyView,
+        mixins.EmailLoginOnlyView,
         SuccessMessageMixin,
         PasswordChangeView):
     template_name = "users/update-password.html"
