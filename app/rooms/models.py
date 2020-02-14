@@ -33,8 +33,6 @@ class Amenity(AbstractItem):
 class Facility(AbstractItem):
     """ Facility Model Definition """
 
-    pass
-
     class Meta:
         verbose_name_plural = "Facilities"
 
