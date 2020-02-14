@@ -54,6 +54,10 @@ class Photo(core_models.TimeStampedModel):
     def __str__(self):
         return self.caption
 
+    class Meta:
+        indexes = [models.Index(fields=["-updated", ])]
+        ordering = ["-updated"]
+
 
 class Room(core_models.TimeStampedModel):
     """ Room Model Definition """
