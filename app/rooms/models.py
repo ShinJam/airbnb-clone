@@ -55,7 +55,9 @@ class Photo(core_models.TimeStampedModel):
         return self.caption
 
     class Meta:
-        indexes = [models.Index(fields=["-updated", ])]
+        indexes = [
+            models.Index(fields=["-updated", ]),
+        ]
         ordering = ["-updated"]
 
 
