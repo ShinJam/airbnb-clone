@@ -5,7 +5,6 @@ from core import models as core_models
 
 
 class AbstractItem(core_models.TimeStampedModel):
-
     """ Abstract Item """
 
     name = models.CharField(max_length=80)
@@ -18,7 +17,6 @@ class AbstractItem(core_models.TimeStampedModel):
 
 
 class RoomType(AbstractItem):
-
     """ RoomType Model Definition """
 
     class Meta:
@@ -26,7 +24,6 @@ class RoomType(AbstractItem):
 
 
 class Amenity(AbstractItem):
-
     """ Amenity Model Definition """
 
     class Meta:
@@ -34,7 +31,6 @@ class Amenity(AbstractItem):
 
 
 class Facility(AbstractItem):
-
     """ Facility Model Definition """
 
     pass
@@ -44,7 +40,6 @@ class Facility(AbstractItem):
 
 
 class HouseRule(AbstractItem):
-
     """ HouseRule Model Definition """
 
     class Meta:
@@ -52,7 +47,6 @@ class HouseRule(AbstractItem):
 
 
 class Photo(core_models.TimeStampedModel):
-
     """ Photo Model Definition """
 
     caption = models.CharField(max_length=80)
@@ -64,7 +58,6 @@ class Photo(core_models.TimeStampedModel):
 
 
 class Room(core_models.TimeStampedModel):
-
     """ Room Model Definition """
 
     name = models.CharField(max_length=140)
@@ -112,3 +105,7 @@ class Room(core_models.TimeStampedModel):
     def first_photo(self):
         photo, = self.photos.all()[:1]
         return photo.file.url
+
+    def get_next_four_photos(self):
+        photos = self.photos.all()[1:5]
+        return photos
