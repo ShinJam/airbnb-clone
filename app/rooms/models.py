@@ -120,5 +120,5 @@ class Room(core_models.TimeStampedModel):
 
     def get_calendars(self):
         this_month = Calendar(2020, 2)
-        next_month = Calendar(2020, 2)
+        next_month = Calendar(2020, 3)
         return [this_month, next_month]
