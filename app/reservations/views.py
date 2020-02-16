@@ -17,7 +17,7 @@ def create(request, room, year, month, day):
         models.BookedDay.objects.get(day=date_obj, reservation__room=room)
         raise CreateError()
     except (room_models.Room.DoesNotExist, CreateError):
-        messages.error(request, "Cant Reserve That Room")
+        messages.error(request, "Can't Reserve That Room")
         return redirect("core:home")
     except models.BookedDay.DoesNotExist:
         reservation = models.Reservation.objects.create(
@@ -30,6 +30,8 @@ def create(request, room, year, month, day):
 
 
 class ReservationDetailView(View):
-    def get(self, request, pk):
-        print("good :", pk)
-        return redirect("core:home")
+    def get(self, *args, **kwargs):
+        pk = kwargs.get("pk")
+        reservation = models.Reservation.objects.get_or_none(pk=pk)
+        if not reservation:
+            return redirect("core:home")
