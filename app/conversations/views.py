@@ -1,5 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import redirect
+from django.views.generic import DetailView
 from users import models as user_models
 from . import models
 
@@ -15,4 +16,8 @@ def go_conversation(request, a_pk, b_pk):
         except models.Conversation.DoesNotExist:
             conversation = models.Conversation.objects.create()
             conversation.participants.add(user_one, user_two)
-        return redirect("core:home")
+        return redirect("conversations:detail", pk=conversation.pk)
+
+
+class ConversationDetailView(DetailView):
+    model = models.Conversation
