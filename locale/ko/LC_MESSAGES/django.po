@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-18 13:48+0900\n"
+"POT-Creation-Date: 2020-02-18 14:13+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,38 @@ msgstr "도시 검색"
 #: app/templates/partials/footer.html:8
 msgid "Reference from Nomad Coders."
 msgstr "노마드코더를 참조 합니다."
+
+#: app/templates/partials/nav.html:7
+msgid "Stop hosting"
+msgstr "호스팅 중단"
+
+#: app/templates/partials/nav.html:9
+msgid "Start hosting"
+msgstr "호스팅 시작"
+
+#: app/templates/partials/nav.html:14
+msgid "Create Room"
+msgstr "방 만들기"
+
+#: app/templates/partials/nav.html:16
+msgid "Profile"
+msgstr "프로필"
+
+#: app/templates/partials/nav.html:17
+msgid "Log out"
+msgstr "로그아웃"
+
+#: app/templates/partials/nav.html:19
+msgid "Log in"
+msgstr "로그인"
+
+#: app/templates/partials/nav.html:20
+msgid "Sign up"
+msgstr "가입하기"
+
+#: app/templates/rooms/room_detail.html:32
+msgid "Save to Favorite"
+msgstr "찜하기"
 
 #: app/templates/rooms/room_list.html:28
 #, python-format
