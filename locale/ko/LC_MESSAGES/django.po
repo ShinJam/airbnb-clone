@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-17 17:04+0900\n"
+"POT-Creation-Date: 2020-02-18 13:48+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,6 +22,51 @@ msgstr ""
 msgid "Search By City"
 msgstr "도시 검색"
 
-#: app/templates/partials/footer.html:7
+#: app/templates/partials/footer.html:8
 msgid "Reference from Nomad Coders."
 msgstr "노마드코더를 참조 합니다."
+
+#: app/templates/rooms/room_list.html:28
+#, python-format
+msgid "Page %(current_page)s of %(total_pages)s"
+msgstr "페이지 %(current_page)s of %(total_pages)s"
+
+#: app/users/mixins.py:13
+msgid "Can't go there"
+msgstr "접근 할 수 없습니다."
+
+#: app/users/models.py:19
+msgid "Male"
+msgstr "남성"
+
+#: app/users/models.py:20
+msgid "Female"
+msgstr "여성"
+
+#: app/users/models.py:21
+msgid "Other"
+msgstr "기타"
+
+#: app/users/models.py:29
+msgid "Korean"
+msgstr "한국어"
+
+#: app/users/models.py:30
+msgid "English"
+msgstr "영어"
+
+#: app/users/models.py:55
+msgid "gender"
+msgstr "성별"
+
+#: app/users/models.py:57
+msgid "bio"
+msgstr "소개"
+
+#: app/users/models.py:60
+msgid "language"
+msgstr "언어"
+
+#: app/users/models.py:85
+msgid "Verify Airbnb Account"
+msgstr "Airbnb 계정 인증 해주세요."
