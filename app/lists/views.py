@@ -7,7 +7,7 @@ def save_room(request, room_pk):
     room = room_models.Room.objects.get_or_none(pk=room_pk)
     if room is not None:
         the_list, _ = models.List.objects.get_or_create(
-            user=request.uset, name="My Favorite Houses"
+            user=request.user, name="My Favorite Houses"
         )
         the_list.rooms.add(room)
     return redirect("rooms:detail", pk=room_pk)
