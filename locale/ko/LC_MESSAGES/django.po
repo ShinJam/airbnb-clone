@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-18 14:38+0900\n"
+"POT-Creation-Date: 2020-02-18 15:07+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,28 +39,31 @@ msgid "Create Room"
 msgstr "방 만들기"
 
 #: app/templates/partials/nav.html:16
+msgid "Favs"
+msgstr "찜"
+
+#: app/templates/partials/nav.html:17
 msgid "Profile"
 msgstr "프로필"
 
-#: app/templates/partials/nav.html:17
+#: app/templates/partials/nav.html:18
 msgid "Log out"
 msgstr "로그아웃"
 
-#: app/templates/partials/nav.html:19
+#: app/templates/partials/nav.html:20
 msgid "Log in"
 msgstr "로그인"
 
-#: app/templates/partials/nav.html:20
+#: app/templates/partials/nav.html:21
 msgid "Sign up"
 msgstr "가입하기"
 
-#: app/templates/rooms/room_detail.html:35
-
-msgid "Remove from Favorite"
+#: app/templates/rooms/room_detail.html:36
+msgid "Remove from Favorites"
 msgstr "찜하기 취소"
 
-#: app/templates/rooms/room_detail.html:38
-msgid "Save to Favorite"
+#: app/templates/rooms/room_detail.html:39
+msgid "Save to Favorites"
 msgstr "찜하기"
 
 #: app/templates/rooms/room_list.html:28
