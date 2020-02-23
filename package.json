@@ -4,7 +4,7 @@
   "description": "This is AirBnb Clone project with [Nomadcoders](https://github.com/nomadcoders/airbnb-clone)",
   "main": "index.js",
   "scripts": {
-    "css": "cd app && gulp"
+    "css": "gulp"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.0",
