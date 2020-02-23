@@ -50,6 +50,9 @@ class User(AbstractUser):
         (LOGIN_KAKAO, "Kakao"),
     )
 
+    first_name = models.CharField(
+        _("first name"), max_length=30, blank=True, default="Unnamed User"
+    )
     # 프로필 이미지
     avatar = models.ImageField(upload_to="avatars", blank=True)
     gender = models.CharField(
