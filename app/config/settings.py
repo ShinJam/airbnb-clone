@@ -23,7 +23,7 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 SECRET_KEY = 'k4ay*t60&uh!09e4tt*e%@aj!u+dkck3)ph1@d^f!o4fssplbp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -125,16 +125,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(ROOT_DIR, "static")]
-
 AUTH_USER_MODEL = "users.User"
 
-MEDIA_ROOT = os.path.join(ROOT_DIR, "uploads")
-MEDIA_URL = "/media/"
 
 # Email Configuration
 
@@ -156,11 +148,23 @@ LOCALE_PATHS = (
 
 # AWS
 
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
+
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_LOCATION = 'static'
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-DEFAULT_FILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storge"
+STATIC_ROOT = os.path.join(ROOT_DIR, 'staticfiles')
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+STATICFILES_DIRS = [os.path.join(ROOT_DIR, "static")]
+
+MEDIA_ROOT = os.path.join(ROOT_DIR, "uploads")
+MEDIA_URL = "/media/"
+
+
+DEFAULT_FILE_STORAGE = 'config.media_backends.MediaStorage'
