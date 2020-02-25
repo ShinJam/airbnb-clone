@@ -25,7 +25,7 @@
             {% endif %}
 
             <span class="mx-3 font-medium text-lg">
-                {% blocktrans trimmed with current_page=page_obj.number total_pages=page_obj.pagninator.num_pages %}
+                {% blocktrans trimmed with current_page=page_obj.number total_pages=page_obj.paginator.num_pages %}
                 Page {{ current_page }} of {{ total_pages }}
                 {% endblocktrans %}
             </span>
