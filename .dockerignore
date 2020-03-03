@@ -1,10 +1,12 @@
 Dockerfile
+.dockerignore
+**/.DS_Store
 README.md
 .git
 .gitignore
 .env
 secrets.json
-__pycache__
+**/__pycache__
 deploy.py
 #node_modules
 
