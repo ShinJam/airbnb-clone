@@ -1,0 +1,13 @@
+Dockerfile
+README.md
+.git
+.gitignore
+.env
+secrets.json
+__pycache__
+deploy.py
+#node_modules
+
+#uploads/
+#static/
+#db.*
