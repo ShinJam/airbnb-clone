@@ -12,7 +12,7 @@ EC2_CERT = os.path.join(HOME, '.ssh', 'airbnb.pem')
 SOURCE = os.path.join(HOME, 'Desktop', 'airbnb-clone')
 SECRETS_FILE = os.path.join(SOURCE, 'secrets.json')
 DOCKER_IMAGE = 'newjam/airbnb-clone'
-DOCKER_IMAGE_TAG = 'airbnb-clone'
+DOCKER_IMAGE_TAG = 'runserver'
 DOCKER_OPTS = [
     ('--rm', ''),
     ('-t', ''),
