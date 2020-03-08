@@ -1,15 +1,27 @@
+# Docker
 Dockerfile
 .dockerignore
-**/.DS_Store
-README.md
+# Config
 .git
 .gitignore
+# Secrets
 .env
 secrets.json
+# NPM
+/node_modules
+# STATICS
+/uploads/avatars/*
+/uploads/room_photos/*
+/static/css/*
+/staticfiles/*
+# Database
+#db.*
+# Translation copmile file
+*.mo
+# ECT
+**/.DS_Store
+README.md
 **/__pycache__
 deploy.py
-#node_modules
+/requirements/*
 
-#uploads/
-#static/
-#db.*

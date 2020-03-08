@@ -5,20 +5,20 @@ import subprocess
 from pathlib import Path
 
 USER = 'ubuntu'
-HOST = '13.58.79.243'
+HOST = '15.164.211.18'
 TARGET = f'{USER}@{HOST}'
 HOME = str(Path.home())
-EC2_CERT = os.path.join(HOME, '.ssh', 'airbnb.pem')
+EC2_CERT = os.path.join(HOME, '.ssh', 'airbnb-clone.pem')
 SOURCE = os.path.join(HOME, 'Desktop', 'airbnb-clone')
 SECRETS_FILE = os.path.join(SOURCE, 'secrets.json')
 DOCKER_IMAGE = 'newjam/airbnb-clone'
-DOCKER_IMAGE_TAG = 'runserver'
+DOCKER_IMAGE_TAG = 'test'
 DOCKER_OPTS = [
     ('--rm', ''),
     ('-t', ''),
     ('-d', ''),
     ('-p', '80:80'),
-    ('--name', DOCKER_IMAGE_TAG),
+    ('--name', DOCKER_IMAGE),
 ]
 
 
@@ -41,9 +41,8 @@ def local_build_push():
 
 # server init from EC2
 def server_init():
-    ssh_run(f'sudo apt-get clean')
     ssh_run(f'sudo apt-get update -y > /dev/null')
-    ssh_run(f'sudo apt-get dist-upgrade -y > /dev/null')
+    ssh_run(f'sudo DEBIAN_FRONTEND=noninteractive apt dist-upgrade -y > /dev/null')
     ssh_run(f'sudo apt-get install docker.io -y')
 
 
@@ -68,7 +67,11 @@ def copy_secrets():
 
 # set prerequisites from docker CONTAINER
 def server_setting():
-    ssh_run(f'sudo docker exec -d {DOCKER_IMAGE_TAG} ./manage.py runserver 0.0.0.0:80')
+    # ssh_run(f'sudo docker exec -d {DOCKER_IMAGE_TAG} ./manage.py runserver 0.0.0.0:80')
+    ssh_run(f'sudo docker exec -it airbnb-clone:test /bin/bash')
+    # gulp bundle
+    # Translation
+    # seed data
 
 
 if __name__ == '__main__':
