@@ -21,8 +21,8 @@ RUN         pip install -r ../.requirements/dev.txt
 
 # Nginx설정파일 링크, 기본 서버 설정 삭제
 #RUN         rm /etc/nginx/sites-enabled/default
-RUN         mv .config/airbnb-clone.conf /etc/nginx/sites-available
-RUN         ln /etc/nginx/sites-available/airbnb-clone/airbnb-clone.conf /etc/nginx/sites-enabled/airbnb-clone.conf
+RUN         mv ../.config/airbnb-clone.conf /etc/nginx/sites-available
+RUN         ln /etc/nginx/sites-available/airbnb-clone.conf /etc/nginx/sites-enabled/airbnb-clone.conf
 
 # gunicorn 로그폴더 생성
 RUN         mkdir /var/log/gunicorn
