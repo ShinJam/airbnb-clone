@@ -5,7 +5,7 @@ import subprocess
 from pathlib import Path
 
 USER = 'ubuntu'
-HOST = '13.125.40.195'
+HOST = '13.125.77.133'
 TARGET = f'{USER}@{HOST}'
 HOME = str(Path.home())
 PROJECT_NAME = 'airbnb-clone'
@@ -71,14 +71,14 @@ def server_setting():
     # ssh_run(f'sudo docker exec -d {DOCKER_IMAGE_TAG} ./manage.py runserver 0.0.0.0:80')
     # stop nginx
     ssh_run(f'sudo docker exec {PROJECT_NAME} /usr/sbin/nginx -s stop', check_error=False)
-    # collect static files
-    ssh_run(f'sudo docker exec {PROJECT_NAME} python manage.py collectstatic --noinput')
-    # npm install
-    ssh_run(f'sudo docker exec {PROJECT_NAME} bash -c "cd ../ && npm install"')
-    # gulp bundle
-    ssh_run(f'sudo docker exec {PROJECT_NAME} bash -c "cd ../ && npm run css"')
-    # compile Translations
-    ssh_run(f'sudo docker exec {PROJECT_NAME} bash -c "python manage.py compilemessages"')
+    # # collect static files
+    # ssh_run(f'sudo docker exec {PROJECT_NAME} python manage.py collectstatic --noinput')
+    # # npm install
+    # ssh_run(f'sudo docker exec {PROJECT_NAME} bash -c "cd ../ && npm install"')
+    # # gulp bundle
+    # ssh_run(f'sudo docker exec {PROJECT_NAME} bash -c "cd ../ && npm run css"')
+    # # compile Translations
+    # ssh_run(f'sudo docker exec {PROJECT_NAME} bash -c "python manage.py compilemessages"')
 
     # seed data
 
