@@ -43,7 +43,7 @@ def local_build_push():
 # server init from EC2
 def server_init():
     ssh_run(f'sudo apt-get update -y > /dev/null')
-    ssh_run(f'sudo DEBIAN_FRONTEND=noninteractive apt dist-upgrade -y > /dev/null')
+    ssh_run(f'sudo DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y > /dev/null')
     ssh_run(f'sudo apt-get install docker.io -y')
 
 
