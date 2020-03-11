@@ -21,7 +21,7 @@ secrets.json
 # ECT
 **/.DS_Store
 README.md
-**/__pycache__
+__pycache__/
 deploy.py
 /requirements/*
 

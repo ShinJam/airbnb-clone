@@ -1,3 +1,16 @@
+# pip install
+FROM        python:3.7-slim as python-packages
+WORKDIR     /airbnb-clone
+COPY        .requirements ./.requirements
+RUN         pip install -q -r .requirements/dev.txt
+
+# npm install
+FROM        node:12 as node-packages
+WORKDIR     /airbnb-clone
+COPY        package*.json ./
+RUN         npm install
+
+# airbnb-clone
 FROM        python:3.7-slim
 
 RUN         apt-get -y -qq update && \
@@ -13,12 +26,13 @@ RUN         apt-get -y -qq install nginx && \
 RUN         rm -rf /var/lib/apt/lists/* %% \
             apt-get clean
 
+# packages
+COPY        --from=node-packages /airbnb-clone/node_modules /srv/airbnb-clone/node_modules
+COPY        --from=python-packages /usr/local /usr/local
+
 # 소스코드 복사
 COPY        . /srv/airbnb-clone
 WORKDIR     /srv/airbnb-clone/app
-
-# requirements.txt(dev)
-RUN         pip install -q -r ../.requirements/dev.txt
 
 # Nginx설정파일 링크, 기본 서버 설정 삭제
 RUN         rm /etc/nginx/sites-enabled/default

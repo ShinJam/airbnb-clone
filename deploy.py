@@ -13,7 +13,7 @@ EC2_CERT = os.path.join(HOME, '.ssh', f'{PROJECT_NAME}.pem')
 SOURCE = os.path.join(HOME, 'Desktop', PROJECT_NAME)
 SECRETS_FILE = os.path.join(SOURCE, 'secrets.json')
 DOCKER_IMAGE = f'newjam/{PROJECT_NAME}'
-DOCKER_IMAGE_TAG = 'test'
+DOCKER_IMAGE_TAG = 'v1'
 DOCKER_OPTS = [
     ('--rm', ''),
     ('-t', ''),
@@ -68,17 +68,16 @@ def copy_secrets():
 
 # set prerequisites from docker CONTAINER
 def server_setting():
-    # ssh_run(f'sudo docker exec -d {DOCKER_IMAGE_TAG} ./manage.py runserver 0.0.0.0:80')
     # stop nginx
     ssh_run(f'sudo docker exec {PROJECT_NAME} /usr/sbin/nginx -s stop', check_error=False)
-    # # collect static files
-    # ssh_run(f'sudo docker exec {PROJECT_NAME} python manage.py collectstatic --noinput')
+    # collect static files
+    ssh_run(f'sudo docker exec {PROJECT_NAME} python manage.py collectstatic --noinput')
     # # npm install
     # ssh_run(f'sudo docker exec {PROJECT_NAME} bash -c "cd ../ && npm install"')
     # # gulp bundle
     # ssh_run(f'sudo docker exec {PROJECT_NAME} bash -c "cd ../ && npm run css"')
     # # compile Translations
-    # ssh_run(f'sudo docker exec {PROJECT_NAME} bash -c "python manage.py compilemessages"')
+    # ssh_run(f'sudo docker exec {PROJECT_NAME} python manage.py compilemessages')
 
     # seed data
 
