@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-18 15:07+0900\n"
+"POT-Creation-Date: 2020-03-12 01:42+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/templates/base.html:24
+#: app/templates/base.html:25
 msgid "Search By City"
-msgstr "도시 검색"
+msgstr "도시 이름으로 검색"
 
 #: app/templates/partials/footer.html:8
 msgid "Reference from Nomad Coders."
-msgstr "노마드코더를 참조 합니다."
+msgstr "노마드 코더를 보고 만들었습니다"
 
 #: app/templates/partials/nav.html:7
 msgid "Stop hosting"
-msgstr "호스팅 중단"
+msgstr "호스팅 그만하기"
 
 #: app/templates/partials/nav.html:9
 msgid "Start hosting"
-msgstr "호스팅 시작"
+msgstr "호스팅 시작하기"
 
 #: app/templates/partials/nav.html:14
 msgid "Create Room"
@@ -69,44 +69,48 @@ msgstr "찜하기"
 #: app/templates/rooms/room_list.html:28
 #, python-format
 msgid "Page %(current_page)s of %(total_pages)s"
-msgstr "페이지 %(current_page)s of %(total_pages)s"
+msgstr "페이지 %(current_page)s / %(total_pages)s"
 
 #: app/users/mixins.py:13
 msgid "Can't go there"
-msgstr "접근 할 수 없습니다."
+msgstr "접근 할 수 없습니다"
 
-#: app/users/models.py:19
+#: app/users/models.py:20
 msgid "Male"
 msgstr "남성"
 
-#: app/users/models.py:20
+#: app/users/models.py:21
 msgid "Female"
 msgstr "여성"
 
-#: app/users/models.py:21
+#: app/users/models.py:22
 msgid "Other"
-msgstr "기타"
+msgstr "Other"
 
-#: app/users/models.py:29
+#: app/users/models.py:30
 msgid "Korean"
 msgstr "한국어"
 
-#: app/users/models.py:30
+#: app/users/models.py:31
 msgid "English"
 msgstr "영어"
 
-#: app/users/models.py:55
+#: app/users/models.py:54
+msgid "first name"
+msgstr "이름"
+
+#: app/users/models.py:59
 msgid "gender"
 msgstr "성별"
 
-#: app/users/models.py:57
+#: app/users/models.py:61
 msgid "bio"
 msgstr "소개"
 
-#: app/users/models.py:60
+#: app/users/models.py:64
 msgid "language"
 msgstr "언어"
 
-#: app/users/models.py:85
+#: app/users/models.py:90
 msgid "Verify Airbnb Account"
-msgstr "Airbnb 계정 인증 해주세요."
+msgstr "계정 인증 하기"

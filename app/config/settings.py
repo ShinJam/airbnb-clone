@@ -133,9 +133,9 @@ LOGIN_URL = "/users/login/"
 
 # Locale
 
-LOCALE_PATHS = (
+LOCALE_PATHS = [
     os.path.join(ROOT_DIR, 'locale'),
-)
+]
 
 # static, media files
 

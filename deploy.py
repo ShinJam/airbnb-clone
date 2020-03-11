@@ -31,7 +31,12 @@ def run(cmd, check_error=False):
 # EC2 bash command
 def ssh_run(cmd, check_error=True, host_key_check=False):
     strict_host_key_check = f'-o StrictHostKeyChecking=no' if not host_key_check else ''
-    subprocess.run(f'ssh {strict_host_key_check} -i {EC2_CERT} {TARGET} -C {cmd}', shell=True, check=check_error)
+    run(f'ssh {strict_host_key_check} -i {EC2_CERT} {TARGET} -C {cmd}', check_error)
+
+
+# Docker Container command
+def docker_run(cmd, container=PROJECT_NAME, daemon=False, check_error=True, host_key_check=False):
+    ssh_run(f'\' sudo docker exec {"-d" if daemon else ""} {container} {cmd} \'', check_error, host_key_check)
 
 
 # docker build, push from LOCAL
@@ -44,7 +49,7 @@ def local_build_push():
 def server_init():
     ssh_run(f'sudo apt-get update -y > /dev/null')
     ssh_run(f'sudo DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y > /dev/null')
-    ssh_run(f'sudo apt-get install docker.io -y')
+    ssh_run(f'sudo apt-get install docker.io -y -qq')
 
 
 # docker server run from EC2 : docker pull, run
@@ -69,21 +74,23 @@ def copy_secrets():
 # set prerequisites from docker CONTAINER
 def server_setting():
     # stop nginx
-    ssh_run(f'sudo docker exec {PROJECT_NAME} /usr/sbin/nginx -s stop', check_error=False)
-    # collect static files
-    ssh_run(f'sudo docker exec {PROJECT_NAME} python manage.py collectstatic --noinput')
-    # # npm install
-    # ssh_run(f'sudo docker exec {PROJECT_NAME} bash -c "cd ../ && npm install"')
-    # # gulp bundle
-    # ssh_run(f'sudo docker exec {PROJECT_NAME} bash -c "cd ../ && npm run css"')
-    # # compile Translations
-    # ssh_run(f'sudo docker exec {PROJECT_NAME} python manage.py compilemessages')
+    docker_run(f'/usr/sbin/nginx -s stop', check_error=False)
 
+    # collect static files
+    docker_run(f'python manage.py collectstatic --noinput')
+    # compile Translations
+    docker_run(f'sh -c \"cd .. && django-admin compilemessages\"')
+    # database migrate
+    docker_run(f'python manage.py migrate > /dev/null')
     # seed data
+    docker_run(f'./manage.py seed_facilities')
+    docker_run(f'./manage.py seed_room_types')
+    docker_run(f'./manage.py seed_amenities --number 7')
+    docker_run(f'./manage.py seed_users --number 10')
+    docker_run(f'./manage.py seed_rooms --number 20')
 
     # start supervisor
-    ssh_run(f'sudo docker exec -t -d {PROJECT_NAME} '
-            f'supervisord -c /srv/{PROJECT_NAME}/.config/supervisord.conf -n')
+    docker_run(f'supervisord -c /srv/{PROJECT_NAME}/.config/supervisord.conf -n', daemon=True)
 
 
 if __name__ == '__main__':

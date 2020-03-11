@@ -11,17 +11,18 @@ secrets.json
 /node_modules
 # STATICS
 /uploads/avatars/*
-/uploads/room_photos/*
+#/uploads/room_photos/*
 /static/css/*
 /staticfiles/*
 # Database
-#db.*
+**/db.sqlite3
 # Translation copmile file
 *.mo
 # ECT
 **/.DS_Store
 README.md
 __pycache__/
+**/__pycache__/
 deploy.py
 /requirements/*
 

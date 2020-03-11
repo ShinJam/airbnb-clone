@@ -18,6 +18,6 @@ server {
 
     # http://localhost/static/
     location /static/ {
-        alias           /srv/airbnb-clone/static/;
+        alias           /srv/airbnb-clone/staticfiles/;
     }
 }
