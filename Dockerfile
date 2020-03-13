@@ -1,12 +1,14 @@
 # npm install
-FROM        node:12 as node-packages
+FROM        node:current-alpine as node-packages
 WORKDIR     /airbnb-clone
 COPY        ./app/assets/scss/ ./app/assets/scss
 COPY        package*.json ./
-COPY        ./gulpfile.js ./
+COPY        ./*.js ./
 RUN         npm install -q
 RUN         mkdir -p static/css
+RUN         npx tailwindcss init tailwindcss-config.js
 RUN         npm run css
+
 
 # airbnb-clone
 FROM        python:3.7-slim

@@ -5,7 +5,7 @@ import subprocess
 from pathlib import Path
 
 USER = 'ubuntu'
-HOST = '13.125.77.133'
+HOST = '13.209.22.4'
 TARGET = f'{USER}@{HOST}'
 HOME = str(Path.home())
 PROJECT_NAME = 'airbnb-clone'

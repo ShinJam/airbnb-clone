@@ -1,3 +1,5 @@
+import json
+import os
 import uuid
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
@@ -7,6 +9,12 @@ from django.core.mail import send_mail
 from django.shortcuts import reverse
 from django.template.loader import render_to_string
 from core import managers as core_managers
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = os.path.dirname(BASE_DIR)
+
+# secrets.json불러오기
+SECRETS = json.load(open(os.path.join(ROOT_DIR, 'secrets.json')))
 
 
 class User(AbstractUser):
@@ -84,7 +92,7 @@ class User(AbstractUser):
             secret = uuid.uuid4().hex[:20]
             self.email_secret = secret
             html_messgae = render_to_string(
-                "emails/verify_email.html", {"secret": secret}
+                "emails/verify_email.html", {"secret": secret, "host_url": SECRETS['HOST_URL']}
             )
             send_mail(
                 subject=_("Verify Airbnb Account"),

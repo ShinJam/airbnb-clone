@@ -5,16 +5,16 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
+# secrets.json불러오기
+SECRETS = json.load(open(os.path.join(ROOT_DIR, 'secrets.json')))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k4ay*t60&uh!09e4tt*e%@aj!u+dkck3)ph1@d^f!o4fssplbp'
+SECRET_KEY = SECRETS['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [SECRETS['HOST_URL'], '*']
 
 # Application definition
 
@@ -73,7 +73,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -83,7 +82,6 @@ DATABASES = {
 }
 
 # Password validation
-# https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -101,7 +99,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-# https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 # LANGUAGE_CODE = 'ko-kr'
@@ -115,9 +112,6 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_USER_MODEL = "users.User"
-
-# secrets.json불러오기
-SECRETS = json.load(open(os.path.join(ROOT_DIR, 'secrets.json')))
 
 # Email Configuration
 
