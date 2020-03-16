@@ -19,6 +19,8 @@ DOCKER_OPTS = [
     ('-t', ''),
     ('-d', ''),
     ('-p', '80:80'),
+    ('-p', '443:443'),
+    ('-v', '/etc/letsencrypt:/etc/letsencrypt'),
     ('--name', PROJECT_NAME),
 ]
 
@@ -68,7 +70,9 @@ def server_run():
 # copy secrets from LOCAL: local to EC2, EC2 to docker
 def copy_secrets():
     run(f'scp -i {EC2_CERT} {SECRETS_FILE} {TARGET}:/tmp')
+    # run(f'scp -i {EC2_CERT} -r .cert {TARGET}:/tmp/.cert')
     ssh_run(f'sudo docker cp /tmp/secrets.json {PROJECT_NAME}:/srv/{PROJECT_NAME}')
+    ssh_run(f'sudo docker cp -a /tmp/.cert {PROJECT_NAME}:/srv/{PROJECT_NAME}/.cert')
 
 
 # set prerequisites from docker CONTAINER
